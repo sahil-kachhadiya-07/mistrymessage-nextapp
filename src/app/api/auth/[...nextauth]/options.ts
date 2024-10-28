@@ -4,9 +4,8 @@ import UserModel from '@/model/User'
 
 var bcrypt = require('bcryptjs')
 import dbConnect from '@/lib/dbConnect'
-import { use } from 'react'
 
-export const authOptions: NextAuthOptions = {
+ const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       id: 'credentials',
@@ -16,7 +15,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' }
       },
-
+ 
       async authorize (credentials: any): Promise<any> {
         await dbConnect()
         try {
@@ -25,8 +24,7 @@ export const authOptions: NextAuthOptions = {
               { email: credentials.identifier },
               { username: credentials.identifier }
             ]
-          })
-
+          })  
           if (!user) {
             throw new Error('user not found')
           }
@@ -74,3 +72,5 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
   secret: process.env.NEXTAUTH_SECRET
 }
+
+export default authOptions

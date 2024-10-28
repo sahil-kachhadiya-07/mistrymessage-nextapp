@@ -3,7 +3,6 @@ import UserModel from '@/model/User'
 var bcrypt = require('bcryptjs');
 import { sendVerificationEmail } from '@/helpers/sendVerificationEmail'
 
-import React from 'react'
 
 export const POST = async (request: Request) => {
   await dbConnect()

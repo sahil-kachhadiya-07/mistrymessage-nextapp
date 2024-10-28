@@ -3,6 +3,7 @@ import { DefaultSession } from 'next-auth';
 import { DefaultJWT } from 'next-auth/jwt';
 import { Declaration } from 'postcss';
 
+//changes into default types
 declare module 'next-auth' {
     interface User {
         _id?: string;
@@ -19,6 +20,8 @@ declare module 'next-auth' {
         } & DefaultSession['user']
     }
 }
+
+//this is just different way to get type
 declare module 'next-auth/jwt'{
     interface JWT {
         _id?: string;
