@@ -1,7 +1,7 @@
+import sendVerificationEmail from '@/helpers/sendVerificationEmail';
 import dbConnect from '@/lib/dbConnect'
 import UserModel from '@/model/User'
 var bcrypt = require('bcryptjs');
-import { sendVerificationEmail } from '@/helpers/sendVerificationEmail'
 
 
 export const POST = async (request: Request) => {
@@ -67,7 +67,8 @@ export const POST = async (request: Request) => {
       username,
       verifyCode
     )
-
+ console.log("sendEmailResponse",sendEmailResponse);
+ 
     if (!sendEmailResponse.success) {
       return Response.json(
         {
