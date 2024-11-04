@@ -6,6 +6,8 @@ var bcrypt = require('bcryptjs');
 
 export const POST = async (request: Request) => {
   await dbConnect()
+  const response = Response as any
+  
   try {
     const { username, email, password } = await request.json()
     const existingUserVerifiedByUsername = await UserModel.findOne({
@@ -14,7 +16,7 @@ export const POST = async (request: Request) => {
     })
 
     if (existingUserVerifiedByUsername) {
-      return Response.json(
+      return response.json(
         { success: false, message: 'Username is Already taken' },
         { status: 400 }
       )
@@ -28,7 +30,7 @@ export const POST = async (request: Request) => {
 
     if (existingUserVerifiedByEmail) {
     if (existingUserVerifiedByEmail.isVerified) {
-      return Response.json(
+      return response.json(
         {
           success: false,
           message:"user is already exist"
@@ -70,7 +72,7 @@ export const POST = async (request: Request) => {
  console.log("sendEmailResponse",sendEmailResponse);
  
     if (!sendEmailResponse.success) {
-      return Response.json(
+      return response.json(
         {
           success: false,
           message: sendEmailResponse.message
@@ -81,7 +83,7 @@ export const POST = async (request: Request) => {
       )
     }
 
-    return Response.json(
+    return response.json(
       {
         success: true,
         message: 'user registered successfully , please verify your email'
@@ -92,7 +94,7 @@ export const POST = async (request: Request) => {
     )
   } catch (error) {
     console.error('error registering user', error)
-    return Response.json(
+    return response.json(
       {
         success: false,
         message: 'error registering user'
