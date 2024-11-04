@@ -7,7 +7,6 @@ const UsernameQuerySchema = z.object({
   username: usernameValidation
 })
 export async function GET (request: Request) {
-  
   await dbConnect()
   try {
     const { searchParams } = new URL(request.url) //get url path like localhost:300//.....
