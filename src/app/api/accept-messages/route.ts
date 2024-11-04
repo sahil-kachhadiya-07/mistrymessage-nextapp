@@ -17,7 +17,7 @@ export async function POST (request: Request) {
     return response.json(
       {
         success: false,
-        message: 'User not found Authenticated'
+        message: 'User not  Authenticated'
       },
       { statusCode: 401 }
     )
@@ -79,7 +79,7 @@ export async function GET (request: Request) {
     return response.json(
       {
         success: false,
-        message: 'User not found Authenticated'
+        message: 'User not  Authenticated'
       },
       { statusCode: 401 }
     )
