@@ -14,7 +14,7 @@ export async function GET (request: Request) {
       username: searchParams.get('username') //get username from routes
     }
     //validate with zod
-    const result = UsernameQuerySchema.safeParse(queryParams)
+    const result = UsernameQuerySchema.safeParse(queryParams) //to parse data safely without throwing an error(convert json to string)
     // console.log("result" ,result)
     if (!result.success) {
       const usernameError = result.error.format().username?._errors || []
