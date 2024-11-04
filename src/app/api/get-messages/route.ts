@@ -51,5 +51,13 @@ export async function GET (request: Request) {
       },
       { statusCode: 200 }
     )
-  } catch (error) {}
+  } catch (error) {
+    console.log('An unexpected Error uccured', error)
+    return response.json(
+      { success: false, message: 'Internal server Error' },
+      {
+        statusCode: 500
+      }
+    )
+  }
 }
