@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { useFormContext  } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
 interface InputProps {
   name: string
@@ -16,15 +16,14 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({
   name,
-  defaultValue = "",
+  defaultValue = '',
   label,
   classNames,
   required,
   type,
   ...props
 }) => {
-
-  const { register} = useFormContext()
+  const { register } = useFormContext()
   return (
     <>
       <div

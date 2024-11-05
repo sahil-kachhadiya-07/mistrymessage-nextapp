@@ -41,7 +41,7 @@ const Button: React.FC<ButtonProps> = ({
       )}
       <button
         className={`flex items-center justify-center py-2 px-4 ${renderButtonVariant()}`}
-        { ...props}
+        {...props}
       >
         {children}
       </button>
