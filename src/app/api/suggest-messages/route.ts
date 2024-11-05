@@ -14,6 +14,7 @@ export async function POST (req: Request) {
     `
 
     // Ask OpenAI for a streaming chat completion given the prompt
+          //@ts-ignore
     const response = await openai.completions.create({
       model: 'gpt-3.5-turbo-instruct',
       max_tokens: 400,
