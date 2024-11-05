@@ -3,14 +3,14 @@ import { Input } from '../Input'
 import { useFormContext } from 'react-hook-form'
 
 interface FieldInputProps {
-  classNames: {
+  classNames?: {
     labelClassName?: string
     inputClassName?: string
     InputContainerClassName?: string
   }
-  label: string
+  label?: string
   name: string
-  type: string
+  type?: string
 }
 
 const FieldInput: React.FC<FieldInputProps> = ({
@@ -21,18 +21,16 @@ const FieldInput: React.FC<FieldInputProps> = ({
   ...props
 }) => {
   const {
-    register,
     formState: { errors }
   } = useFormContext()
   return (
     <>
       <Input
-        {...props}
         label={label}
         name={name}
-        register={register}
         classNames={classNames}
         type={type}
+        {...props}
       />
       {errors[name] && (
         <p className='error'>{errors[name]?.message?.toString()}</p>

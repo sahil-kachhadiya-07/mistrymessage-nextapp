@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { UseFormRegister, useForm } from 'react-hook-form'
+import { useFormContext  } from 'react-hook-form'
 
 interface InputProps {
   name: string
@@ -12,23 +12,23 @@ interface InputProps {
   }
   required?: boolean
   type?: string
-  register: UseFormRegister<any>
 }
 
 const Input: React.FC<InputProps> = ({
   name,
-  defaultValue,
+  defaultValue = "",
   label,
   classNames,
   required,
-  register,
   type,
   ...props
 }) => {
+
+  const { register} = useFormContext()
   return (
     <>
       <div
-        className={`flex flex-col gap-2 ${
+        className={`flex flex-row gap-2 ${
           classNames?.InputContainerClassName ?? ''
         }`}
       >
@@ -39,10 +39,10 @@ const Input: React.FC<InputProps> = ({
         )}
         <input
           defaultValue={defaultValue}
-          {...register(name)}
-          className={` w-full ${classNames?.inputClassName}`}
+          className={` border-solid border-[1px] border-x-black w-full ${classNames?.inputClassName}`}
           type={type}
           {...props}
+          {...register(name)}
         />
       </div>
     </>
