@@ -7,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leftAdornment?: ReactNode
   rightAdornment?: ReactNode
   className?: string
-  iconClassName?:string
+  iconClassName?: string
 }
 
 enum ButtonVariant {
@@ -17,30 +17,36 @@ enum ButtonVariant {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  variant,
+  variant = 'primary',
   className,
   children,
   leftAdornment,
   rightAdornment,
   ...props
 }) => {
-  const buttonVariant = () => {
+  const renderButtonVariant = () => {
     switch (variant) {
       case ButtonVariant.SECONDARY:
         return classes.secondary
       case ButtonVariant.TEXT:
         return classes.text
       default:
-        classes.primary
+        return classes.primary
     }
   }
   return (
     <>
-      {!!leftAdornment && <span className={`{iconClassName}`}>{leftAdornment}</span>}
-      <button className={`flex justify-center items-center p-4 rounded ${className} ${buttonVariant()}`} {...props}>
+      {!!leftAdornment && (
+        <span className={`{iconClassName}`}>{leftAdornment}</span>
+      )}
+      <button
+        className={`flex items-center justify-center py-2 px-4 ${renderButtonVariant()}`}
+      >
         {children}
       </button>
-      {!!rightAdornment && <span className={`{iconClassName}`}>{rightAdornment}</span>}
+      {!!rightAdornment && (
+        <span className={`{iconClassName}`}>{rightAdornment}</span>
+      )}
     </>
   )
 }
