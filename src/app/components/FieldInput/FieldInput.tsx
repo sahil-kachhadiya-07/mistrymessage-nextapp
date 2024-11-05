@@ -11,6 +11,7 @@ interface FieldInputProps {
   label?: string
   name: string
   type?: string
+  onChange?: ()=>void
 }
 
 const FieldInput: React.FC<FieldInputProps> = ({
@@ -18,6 +19,7 @@ const FieldInput: React.FC<FieldInputProps> = ({
   label,
   name,
   type = 'text',
+  onChange,
   ...props
 }) => {
   const {
