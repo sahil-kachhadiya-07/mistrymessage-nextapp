@@ -1,0 +1,11 @@
+.primary {
+    @apply bg-black text-white
+}
+
+.secondary {
+    @apply bg-white text-black border-solid border-px border-black
+}
+
+.text {
+    @apply  border-none bg-transparent text-black
+}
