@@ -1,7 +1,7 @@
 import dbConnect from '@/lib/dbConnect'
 import UserModel from '@/model/User'
-    
-export async function Post (request: Request) {
+      
+export async function POST (request: Request) {
   await dbConnect()
   const response = Response as any
   try {

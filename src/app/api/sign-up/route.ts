@@ -26,6 +26,7 @@ export const POST = async (request: Request) => {
     })
 
     const verifyCode = Math.floor(100000 + Math.random() * 900000).toString()
+    console.log('verifyCode ', verifyCode)
 
     if (existingUserVerifiedByEmail) {
       if (existingUserVerifiedByEmail.isVerified) {
