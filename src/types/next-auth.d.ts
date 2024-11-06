@@ -1,7 +1,5 @@
 import 'next-auth'
 import { DefaultSession } from 'next-auth';
-import { DefaultJWT } from 'next-auth/jwt';
-import { Declaration } from 'postcss';
 
 //changes into default types
 declare module 'next-auth' {

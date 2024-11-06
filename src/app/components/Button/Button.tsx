@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
         <span className={`{iconClassName}`}>{leftAdornment}</span>
       )}
       <button
-        className={`flex items-center justify-center py-2 px-4 ${renderButtonVariant()}`}
+        className={`flex items-center justify-center py-2 px-4 ${className} ${renderButtonVariant()}`}
         {...props}
       >
         {children}
