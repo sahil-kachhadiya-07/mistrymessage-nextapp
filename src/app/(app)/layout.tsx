@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavBar } from '../components/Navbar'
 import { MessageCard } from '../components/MessageCard'
+import { Modal } from '../components/Modal'
 // import '../globals.css'
 
 export const metadata: Metadata = {
