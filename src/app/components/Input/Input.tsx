@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { useFormContext } from 'react-hook-form'
 
-interface InputProps {
+export interface InputProps extends React.ComponentProps<"input"> {
   name: string
   defaultValue?: string
   label?: ReactNode
@@ -12,6 +12,7 @@ interface InputProps {
   }
   required?: boolean
   type?: string
+  onChange?:(e?:React.ChangeEvent<HTMLInputElement>)=>void
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +21,7 @@ const Input: React.FC<InputProps> = ({
   label,
   classNames,
   required,
+  onChange,
   type,
   ...props
 }) => {
@@ -41,7 +43,7 @@ const Input: React.FC<InputProps> = ({
           className={` border-solid border-[1px] border-x-black w-full ${classNames?.inputClassName}`}
           type={type}
           {...props}
-          {...register(name)}
+          {...register(name , {onChange:onChange})}
         />
       </div>
     </>

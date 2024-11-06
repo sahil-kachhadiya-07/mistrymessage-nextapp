@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import axios, { AxiosError } from 'axios'
 
-import React, { HtmlHTMLAttributes, useEffect, useState } from 'react'
+import React, { HtmlHTMLAttributes, useCallback, useEffect, useState } from 'react'
 import { signUpSchema } from '@/schemas/signUpSchema'
 import { ApiResponse } from '@/types/ApiResponseType'
 import { FieldInput } from '@/app/components/FieldInput'
@@ -20,8 +20,6 @@ const page = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
 
-  const debounceUsername = username;
-
   const methods = useForm({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -32,15 +30,16 @@ const page = () => {
   })
 
   const checkUSernameUnique = async () => {
-    if (!!debounceUsername) {
+    if (!!username) {
       setIsCheckingUsername(true)
       setUsernameMessages('')
       try {
         const response = await axios.get(
-          `/api/check-username-unique?username=${debounceUsername}`
+          `/api/check-username-unique?username=${username}`
         )
         console.log('response', response)
         setUsernameMessages(response.data.message)
+        toast(response.data.message)
       } catch (error) {
         const axiosError = error as AxiosError<ApiResponse>
         setUsernameMessages(
@@ -54,7 +53,7 @@ const page = () => {
 
   useEffect(() => {
     checkUSernameUnique()
-  }, [])
+  }, [username])
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setUsername(data.username)
@@ -71,6 +70,15 @@ const page = () => {
       setIsSubmitting(false)
     }
   }
+
+  const debouncedSetUsername = useCallback(
+    debounce((value) => setUsername(value), 3000),
+    [username]
+  );
+function handleOnChange(e: React.ChangeEvent<HTMLInputElement>){
+  debouncedSetUsername(e.target.value)
+}
+console.log('username', username)
   return (
     <div>
       <div>
@@ -80,10 +88,10 @@ const page = () => {
         </div>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <FieldInput name='username' label='username' />
+            <FieldInput name='username' label='username' onChange={handleOnChange}/>
             <FieldInput name='email' label='email' />
             <FieldInput name='password' label='password' />
-            <Button type='submit'>Sign in</Button>
+            <Button type='submit'>Sign Up</Button>
           </form>
         </FormProvider>
       </div>
