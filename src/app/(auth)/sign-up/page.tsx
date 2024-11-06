@@ -100,6 +100,7 @@ const page = () => {
               label='username'
               onChange={handleOnChange}
             />
+            {isCheckingUsername && <Loader2 className='animate-spin' />}
             <FieldInput name='email' label='email' />
             <FieldInput name='password' label='password' />
             <Button type='submit'>
