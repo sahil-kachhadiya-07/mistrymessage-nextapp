@@ -43,10 +43,11 @@ const page = () => {
   }
   return (
  <div className='flex items-center justify-center h-screen bg-cyan-800'>
-    <div className='flex items-center justify-center flex-col w-full bg-white rounded-[8px] max-w-[366px] shadow-lg'>
-      <div className='font-bold text-[40px]'>
+    <div className='flex min-h-[500px] flex-col w-full bg-white p-[24px] rounded-[8px] max-w-[366px] shadow-lg'>
+      <div className='font-bold text-[40px] flex items-start justify-center'>
         Sign In 
       </div>
+     <div className='flex items-center min-h-[300px] justify-center'>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)} className='flex w-full px-[32px] flex-col gap-6'>
           <FieldInput label='Username/Email' name='identifier' />
@@ -54,6 +55,7 @@ const page = () => {
           <Button className="w-full !bg-pink-400" type='submit'>Sign In</Button>
         </form>
       </FormProvider>
+     </div>   
     </div>
   </div>
  
