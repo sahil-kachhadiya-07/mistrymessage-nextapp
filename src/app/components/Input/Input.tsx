@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <>
       <div
-        className={`flex flex-row gap-2 ${
+        className={`flex flex-col gap-2 ${
           classNames?.InputContainerClassName ?? ''
         }`}
       >
@@ -40,7 +40,7 @@ const Input: React.FC<InputProps> = ({
         )}
         <input
           defaultValue={defaultValue}
-          className={` border-solid border-[1px] border-x-black w-full ${classNames?.inputClassName}`}
+          className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`}
           type={type}
           {...props}
           {...register(name , {onChange:onChange})}

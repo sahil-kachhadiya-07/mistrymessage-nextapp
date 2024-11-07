@@ -42,15 +42,22 @@ const page = () => {
     }
   }
   return (
-    <div>
+ <div className='flex items-center justify-center h-screen bg-cyan-800'>
+    <div className='flex items-center justify-center flex-col w-full bg-white rounded-[8px] max-w-[366px] shadow-lg'>
+      <div className='font-bold text-[40px]'>
+        Sign In 
+      </div>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FieldInput label='username/Email' name='identifier' />
+        <form onSubmit={handleSubmit(onSubmit)} className='flex w-full px-[32px] flex-col gap-6'>
+          <FieldInput label='Username/Email' name='identifier' />
           <FieldInput label='Password' name='password' />
-          <Button type='submit'>Sign In</Button>
+          <Button className="w-full !bg-pink-400" type='submit'>Sign In</Button>
         </form>
       </FormProvider>
     </div>
+  </div>
+ 
+    
   )
 }
 

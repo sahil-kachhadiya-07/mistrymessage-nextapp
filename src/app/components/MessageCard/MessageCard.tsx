@@ -10,7 +10,12 @@ const MessageCard = () => {
   return (
     <div className='shadow-lg flex  flex-col max-w-[600px] w-full p-4'>
           <Modal forceHidden={open} handelDrawerClose={()=>setOpen(false)}>
-          hello
+            <h1 className='text-[24px] font-bold'>Delete Message</h1>
+            <p className='text-[16px] py-4'>Are you sure to delete message?</p>
+          <footer className='flex justify-end gap-4 '>
+            <Button>delete</Button>
+            <Button>cancel</Button>
+          </footer>
         </Modal>
        <div className='flex justify-between'>
        <h1 className='font-bold text-[24px]'>
