@@ -9,10 +9,10 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import { AuthDesign } from '@/app/components/AuthDesign'
 
 const page = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const { handleSubmit } = useForm()
   const router = useRouter()
 
   const methods = useForm({
@@ -29,11 +29,10 @@ const page = () => {
       password: data.password
     })
     if (result?.error) {
-      //2nd if condition is tottaly optional
+      //2nd if condition is totally optional
       if (result?.error === 'CredentialsSignin') {
         toast('incorrect username or password')
-      }
-      else{
+      } else {
         toast('incorrect username or password')
       }
     }
@@ -41,25 +40,22 @@ const page = () => {
       router.replace('/dashboard')
     }
   }
+
   return (
- <div className='flex items-center justify-center h-screen bg-cyan-800'>
-    <div className='flex min-h-[500px] flex-col w-full bg-white p-[24px] rounded-[8px] max-w-[366px] shadow-lg'>
-      <div className='font-bold text-[40px] flex items-start justify-center'>
-        Sign In 
-      </div>
-     <div className='flex items-center min-h-[300px] justify-center'>
+    <AuthDesign title='Sign In'>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} className='flex w-full px-[32px] flex-col gap-6'>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className='flex w-full px-[32px] flex-col gap-6'
+        >
           <FieldInput label='Username/Email' name='identifier' />
           <FieldInput label='Password' name='password' />
-          <Button className="w-full !bg-pink-400" type='submit'>Sign In</Button>
+          <Button className='w-full !bg-pink-400' type='submit'>
+            Sign In
+          </Button>
         </form>
       </FormProvider>
-     </div>   
-    </div>
-  </div>
- 
-    
+    </AuthDesign>
   )
 }
 

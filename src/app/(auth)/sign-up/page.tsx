@@ -19,6 +19,7 @@ import { FieldInput } from '@/app/components/FieldInput'
 import { Button } from '@/app/components/Button'
 import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
+import { AuthDesign } from '@/app/components/AuthDesign'
 
 const page = () => {
   const [username, setUsername] = useState('')
@@ -84,16 +85,27 @@ const page = () => {
   function handleOnChange (e: React.ChangeEvent<HTMLInputElement>) {
     debouncedSetUsername(e.target.value)
   }
+
+  const labels = [
+    { label: 'Username', name: 'username', onChange: handleOnChange },
+    {
+      label: 'Email',
+      name: 'email'
+    },
+    {
+      label: 'Password',
+      name: 'password'
+    }
+  ]
   console.log('username', username)
   return (
     <div>
-      <div>
-        <div>
-          <h1>Join Mystery Message</h1>
-          <p>sign up to start </p>
-        </div>
+      <AuthDesign title='Sign Up'>
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={methods.handleSubmit(onSubmit)}
+            className='flex w-full px-[32px] flex-col gap-6'
+          >
             <FieldInput
               name='username'
               label='username'
@@ -102,7 +114,7 @@ const page = () => {
             {isCheckingUsername && <Loader2 className='animate-spin' />}
             <FieldInput name='email' label='email' />
             <FieldInput name='password' label='password' />
-            <Button type='submit'>
+            <Button className='w-full !bg-pink-400' type='submit'>
               {isSubmitting ? (
                 <>
                   <Loader2 className='animate-spin' /> please wait..
@@ -111,15 +123,17 @@ const page = () => {
                 <>Sign Up</>
               )}
             </Button>
+            <div className='flex items-center flex-row'>
+              <p>Already a Member?</p>
+              <Link href='/sign-in'>
+                <Button variant='text' className='underline !text-pink-400'>
+                  Sign In
+                </Button>{' '}
+              </Link>
+            </div>
           </form>
         </FormProvider>
-      </div>
-      <div>
-        <p>
-          Already a Member?{''}
-          <Link href="/sign-in"><Button>Sign In</Button> </Link>
-        </p>
-      </div>
+      </AuthDesign>
     </div>
   )
 }

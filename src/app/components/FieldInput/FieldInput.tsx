@@ -38,7 +38,7 @@ const FieldInput: React.FC<FieldInputProps> = ({
         {...props}
       />
       {errors[name] && (
-        <p className='error'>{errors[name]?.message?.toString()}</p>
+        <p  className="text-red-100">{errors[name]?.message?.toString()}</p>
       )}
     </>
   )
