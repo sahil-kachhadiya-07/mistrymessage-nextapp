@@ -86,19 +86,6 @@ const page = () => {
   function handleOnChange (e: React.ChangeEvent<HTMLInputElement>) {
     debouncedSetUsername(e.target.value)
   }
-
-  const labels = [
-    { label: 'Username', name: 'username', onChange: handleOnChange },
-    {
-      label: 'Email',
-      name: 'email'
-    },
-    {
-      label: 'Password',
-      name: 'password'
-    }
-  ]
-  console.log('username', username)
   return (
     <div>
       <AuthDesign title='Sign Up'>
