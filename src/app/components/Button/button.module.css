@@ -1,11 +1,11 @@
 .primary {
-    @apply bg-[red] text-white
+    @apply bg-pink-400 text-white
 }
 
 .secondary {
-    @apply bg-white text-black border-solid border-[1px] border-black
+    @apply bg-white text-pink-400 border-solid border-[1px] border-pink-400
 }
 
 .text {
-    @apply  border-none bg-transparent text-black
+    @apply  border-none bg-transparent text-pink-400
 }
