@@ -20,6 +20,7 @@ import { Button } from '@/app/components/Button'
 import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { AuthDesign } from '@/app/components/AuthDesign'
+import { ButtonVariant } from '@/app/components/Button/Button'
 
 const page = () => {
   const [username, setUsername] = useState('')
@@ -126,7 +127,7 @@ const page = () => {
             <div className='flex items-center flex-row'>
               <p>Already a Member?</p>
               <Link href='/sign-in'>
-                <Button variant='text' className='underline !text-pink-400'>
+                <Button variant="text" className='underline !text-pink-400'>
                   Sign In
                 </Button>{' '}
               </Link>

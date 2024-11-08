@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes, ReactNode } from 'react'
 import classes from './button.module.css'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant
+  variant?: ButtonVariant | string
   children: ReactNode
   leftAdornment?: ReactNode
   rightAdornment?: ReactNode
@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconClassName?: string
 }
 
-enum ButtonVariant {
+export enum ButtonVariant {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
   TEXT = 'text'
