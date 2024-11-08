@@ -1,5 +1,6 @@
 'use client'
 
+import { AuthDesign } from '@/app/components/AuthDesign'
 import { Button } from '@/app/components/Button'
 import { FieldInput } from '@/app/components/FieldInput'
 import { verifySchema } from '@/schemas/verifySchema'
@@ -17,12 +18,12 @@ const VerificationCode = () => {
 
   const methods = useForm({
     resolver: zodResolver(verifySchema),
-    defaultValues:{
-        code:""
+    defaultValues: {
+      code: ''
     }
   })
 
-  const onSubmit = async (data:any) => {
+  const onSubmit = async (data: any) => {
     console.log('data', data)
     try {
       const response = await axios.post(`/api/verify-code`, {
@@ -30,7 +31,11 @@ const VerificationCode = () => {
         code: data.code
       })
       toast(response.data.message)
-      router.replace('/sign-in')
+      if(response.data.statusCode){
+        router.replace('/sign-in')
+      }else{
+        router.replace('/sign-up')
+      }
     } catch (error) {
       console.error('Error in signUp', error)
       const axiosError = error as AxiosError<ApiResponse>
@@ -39,18 +44,19 @@ const VerificationCode = () => {
   }
   return (
     <div>
-        <h1>verify your account</h1>
-      <div>
-      <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <FieldInput
-              name='code'
-              label='verification code'
-            />
-            <Button type='submit'>Sign-In</Button>
-            </form>
-            </FormProvider>
-      </div>
+      <AuthDesign title='verification code'>
+        <FormProvider {...methods}>
+          <form
+            onSubmit={methods.handleSubmit(onSubmit)}
+            className='flex w-full px-[32px] flex-col gap-6'
+          >
+            <FieldInput name='code' label='Verification Code' />
+            <Button type='submit' className='w-full !bg-pink-400'>
+              Sign-In
+            </Button>
+          </form>
+        </FormProvider>
+      </AuthDesign>
     </div>
   )
 }
