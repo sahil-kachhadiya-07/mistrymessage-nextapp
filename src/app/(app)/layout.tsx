@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { NavBar } from '../components/Navbar'
 import { MessageCard } from '../components/MessageCard'
 import { Modal } from '../components/Modal'
+import { Switch } from '../components/Switch'
 // import '../globals.css'
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +17,8 @@ export default function RootLayout ({
   return (
     <html lang='en'>
       <body>
-        <MessageCard/>
+        <Switch/>
+        {/* <MessageCard/> */}
         <NavBar />
         {children}
         {/* <MessageCard/> */}
