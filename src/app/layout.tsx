@@ -35,15 +35,18 @@ export default function RootLayout ({
           <NavBar />
           {children}
           <ToastContainer
-            position='top-left'
+            position="top-right"
             newestOnTop
             rtl={false}
             pauseOnFocusLoss
-            autoClose={5000}
-            hideProgressBar={false}
+            autoClose={1000}
+            hideProgressBar
             closeOnClick
             draggable
             pauseOnHover
+            toastClassName="toast"
+            bodyClassName="toast-body"
+            className="toast-container"
           />
         </body>
       </AuthProvider>

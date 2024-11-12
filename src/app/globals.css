@@ -25,3 +25,82 @@ body {
     text-wrap: balance;
   }
 } */
+
+/* globals.css or custom-toast.css */
+
+/* globals.css or custom-toast.css */
+
+/* custom-toast.css */
+/* custom-toast.css */
+
+.toast-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  color: #333;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #3b82f6;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+  animation: fadeInUp 0.5s forwards;
+}
+
+/* Fade in on entry */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Reverse fade out on exit */
+@keyframes fadeOutDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+}
+
+.toast-leaving {
+  animation: fadeOutDown 0.5s forwards;
+}
+
+.toast-close-button {
+  color: #888;
+  font-size: 20px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.toast-close-button:hover {
+  color: #333;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast-message {
+  color: #555;
+}
