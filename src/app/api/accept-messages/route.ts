@@ -1,119 +1,113 @@
 import dbConnect from '@/lib/dbConnect'
-import { User, getServerSession } from 'next-auth' //User is used for type
+import { User, getServerSession } from 'next-auth' // User is used for type
 import authOptions from '../auth/[...nextauth]/options'
 import UserModel from '@/model/User'
+import { NextResponse } from 'next/server' // Use NextResponse for API responses in Next.js
 
-/********  post request is used to update status ******/
+/********  POST request to update status ******/
 export async function POST (request: Request) {
   await dbConnect()
-  const response = Response as any
 
-  //getServerSession is used to retrieve the session object from the server-side.
   const session = await getServerSession(authOptions)
-
   const user: User = session?.user as User
 
   if (!session || !session.user) {
-    return response.json(
+    return NextResponse.json(
       {
         success: false,
-        message: 'User not  Authenticated'
+        message: 'User not Authenticated'
       },
-      { statusCode: 401 }
+      { status: 401 }
     )
   }
 
   const userId = user._id
-  const { acceptMessages } = await response.json()
+  const { acceptMessages } = await request.json()
 
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       userId,
-      {
-        isAcceptingMessage: acceptMessages
-      },
-      { new: true }
-    ) //new is used to return new updated values
+      { isAcceptingMessage: acceptMessages },
+      { new: true } // new is used to return the new updated values
+    )
 
     if (!updatedUser) {
-      return response.json(
+      return NextResponse.json(
         {
           success: false,
-          message: 'faild to update user to accept messages'
+          message: 'Failed to update user to accept messages'
         },
-        { statusCode: 401 }
+        { status: 404 }
       )
     }
-    return response.json(
+
+    return NextResponse.json(
       {
         success: true,
-        message: 'message acceptance status updated successfully',
+        message: 'Message acceptance status updated successfully',
         updatedUser
       },
-      { statusCode: 200 }
+      { status: 200 }
     )
   } catch (error) {
-    console.log('failed to update user to accept messages')
-    return response.json(
+    console.error('Failed to update user to accept messages:', error)
+    return NextResponse.json(
       {
         success: false,
-        message: 'failed to update user to accept messages'
+        message: 'Failed to update user to accept messages'
       },
-      { statusCode: 500 }
+      { status: 500 }
     )
   }
 }
 
-
-/******  get method is used to get current status *******/
+/******  GET method to retrieve current status *******/
 export async function GET (request: Request) {
   await dbConnect()
-  const response = Response as any
 
-  //getServerSession is used to retrieve the session object from the server-side.
   const session = await getServerSession(authOptions)
-
   const user: User = session?.user as User
 
   if (!session || !session.user) {
-    return response.json(
+    return NextResponse.json(
       {
         success: false,
-        message: 'User not  Authenticated'
+        message: 'User not Authenticated'
       },
-      { statusCode: 401 }
+      { status: 401 }
     )
   }
 
   const userId = user._id
+  console.log('userId', userId)
   try {
     const foundUser = await UserModel.findById(userId)
 
     if (!foundUser) {
-      return response.json(
+      return NextResponse.json(
         {
           success: false,
           message: 'User not found'
         },
-        { statusCode: 404 }
+        { status: 404 }
       )
     }
 
-    return response.json(
+    return NextResponse.json(
       {
         success: true,
         isAcceptingMessages: foundUser.isAcceptingMessage
       },
-      { statusCode: 200 }
+      { status: 200 }
     )
   } catch (error) {
-    console.log('Error is getting message acceptance status')
-    return response.json(
+    console.error('Error in getting message acceptance status:', error)
+    return NextResponse.json(
       {
         success: false,
-        message: 'Error is getting message acceptance status'
+        message: 'Error in getting message acceptance status'
       },
-      { statusCode: 500 }
+      { status: 500 }
     )
   }
 }

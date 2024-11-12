@@ -25,6 +25,11 @@ const Input: React.FC<InputProps> = ({
   type,
   ...props
 }) => {
+  const formContext = useFormContext();
+  
+  if (!formContext) {
+    return <input className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`} {...props} />; 
+  }
   const { register } = useFormContext()
   return (
     <>

@@ -2,6 +2,7 @@ import z from 'zod'
 import { usernameValidation } from '@/schemas/signUpSchema'
 import UserModel from '@/model/User'
 import dbConnect from '@/lib/dbConnect'
+import { NextResponse } from 'next/server'
 
 const UsernameQuerySchema = z.object({
   username: usernameValidation
@@ -18,7 +19,7 @@ export async function GET (request: Request) {
     // console.log("result" ,result)
     if (!result.success) {
       const usernameError = result.error.format().username?._errors || []
-      return (Response as any).json(
+      return NextResponse.json(
         {
           success: false,
           message:
@@ -26,7 +27,7 @@ export async function GET (request: Request) {
               ? usernameError.join(', ')
               : 'invalid query params'
         },
-        { statusCode: 400 }
+        { status: 400 }
       )
     }
     const { username } = result.data //get username from result
@@ -35,31 +36,31 @@ export async function GET (request: Request) {
       isVerified: true
     })
     if (existingVerifiedUser) {
-      return (Response as any).json(
+      return NextResponse.json(
         {
           success: false,
           message: 'Username is taken'
         },
-        { statusCode: 400 }
+        { status: 400 }
       )
     } else {
-      return (Response as any).json(
+      return NextResponse.json(
         {
           success: true,
           message: 'Username is unique'
         },
-        { statusCode: 200 }
+        { status: 200 }
       )
     }
   } catch (error) {
     console.log('Error checking Username', error)
-    return (Response as any).json(
+    return NextResponse.json(
       {
         success: false,
         message: 'Error checking username'
       },
       {
-        statusCode: 500
+        status: 500
       }
     )
   }

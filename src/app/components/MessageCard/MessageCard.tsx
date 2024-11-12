@@ -4,22 +4,29 @@ import { CrossIcon } from 'lucide-react'
 import React, { useState } from 'react'
 import { Button } from '../Button'
 import { Modal } from '../Modal'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { ApiResponse } from '@/types/ApiResponseType'
 import { toast } from 'react-toastify'
 import { Message } from '@/model/User'
-interface MessageCardProps {
-  message:Message;
-  onMessageDelete:(messageId:any)=>void
-}
-const MessageCard:React.FC<MessageCardProps> = ({message,onMessageDelete}) => {
-  const [open , setOpen] = useState(false)
- const handleDelete = async () =>{
-    const response =  await axios.delete<ApiResponse>(`/api/dele-message?${message._id}`)
-    toast(response.data.message)
-    onMessageDelete(message._id)
-
- }
+  interface MessageCardProps {
+    message:Message;
+    onMessageDelete:(messageId:any)=>void
+  }
+  const MessageCard:React.FC<MessageCardProps> = ({message,onMessageDelete}) => {
+    const [open , setOpen] = useState(false)
+  const handleDelete = async () =>{
+     try {
+      const response =  await axios.delete<ApiResponse>(`api/delete-message/${message._id}`)
+      toast(response.data.message)
+      onMessageDelete(message._id)
+     } catch (error) {
+      const axiosError = error as AxiosError<ApiResponse>
+      toast(axiosError.response?.data.message || 'Failed to delete message')
+     }
+     finally{
+      setOpen(false)
+     }
+  }
   return (
     <div className='shadow-lg flex  flex-col max-w-[600px] w-full p-4'>
           <Modal forceHidden={open} handelDrawerClose={()=>setOpen(false)}>
@@ -32,12 +39,12 @@ const MessageCard:React.FC<MessageCardProps> = ({message,onMessageDelete}) => {
         </Modal>
        <div className='flex justify-between'>
        <h1 className='font-bold text-[24px]'>
-            Card title
+            {message.content}
         </h1>
         <Button onClick={()=>setOpen(true)}><CrossIcon/></Button>
        </div>
         <div>
-            card description
+           {message.createdAt}
         </div>
     </div>
   )

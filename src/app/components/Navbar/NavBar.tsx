@@ -24,7 +24,7 @@ const NavBar = () => {
                     <span>
                       Welcome , {user?.username || user?.email}
                     </span>
-                    <Button onClick={()=>signOut()}>Sign Out</Button>
+                    <Button onClick={()=>signOut()} >Sign Out</Button>
                    </>
                 ) : (
                   <Link href="/sign-in">

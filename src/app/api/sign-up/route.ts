@@ -1,11 +1,11 @@
 import sendVerificationEmail from '@/helpers/sendVerificationEmail'
 import dbConnect from '@/lib/dbConnect'
 import UserModel from '@/model/User'
+import { NextResponse } from 'next/server'
 var bcrypt = require('bcryptjs')
 
 export const POST = async (request: Request) => {
   await dbConnect()
-  const response = Response as any
 
   try {
     const { username, email, password } = await request.json()
@@ -15,7 +15,7 @@ export const POST = async (request: Request) => {
     })
 
     if (existingUserVerifiedByUsername) {
-      return response.json(
+      return NextResponse.json(
         { success: false, message: 'Username is Already taken' },
         { status: 400 }
       )
@@ -30,13 +30,13 @@ export const POST = async (request: Request) => {
 
     if (existingUserVerifiedByEmail) {
       if (existingUserVerifiedByEmail.isVerified) {
-        return response.json(
+        return NextResponse.json(
           {
             success: false,
             message: 'user is already exist'
           },
           {
-            statusCode: 400
+            status: 400
           }
         )
       } else {
@@ -74,35 +74,35 @@ export const POST = async (request: Request) => {
     console.log('sendEmailResponse', sendEmailResponse)
 
     if (!sendEmailResponse.success) {
-      return response.json(
+      return NextResponse.json(
         {
           success: false,
           message: sendEmailResponse.message
         },
         {
-          statusCode: 500
+          status: 500
         }
       )
     }
 
-    return response.json(
+    return NextResponse.json(
       {
         success: true,
         message: 'user registered successfully , please verify your email'
       },
       {
-        statusCode: 201
+        status: 201
       }
     )
   } catch (error) {
     console.error('error registering user', error)
-    return response.json(
+    return NextResponse.json(
       {
         success: false,
         message: 'error registering user'
       },
       {
-        statusCode: 200
+        status: 200
       }
     )
   }

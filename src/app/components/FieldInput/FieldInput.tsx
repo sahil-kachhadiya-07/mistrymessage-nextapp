@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Input } from '../Input'
 import { useFormContext } from 'react-hook-form'
@@ -24,9 +25,8 @@ const FieldInput: React.FC<FieldInputProps> = ({
   type = 'text',
   ...props
 }) => {
-  const {
-    formState: { errors }
-  } = useFormContext()
+  const { formState , register } = useFormContext() || { formState: { errors: {} } };
+  const { errors } = formState;
   return (
     <>
       <Input

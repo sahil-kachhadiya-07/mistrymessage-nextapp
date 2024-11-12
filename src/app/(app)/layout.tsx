@@ -17,11 +17,8 @@ export default function RootLayout ({
   return (
     <html lang='en'>
       <body>
-        <Switch/>
-        {/* <MessageCard/> */}
         <NavBar />
         {children}
-        {/* <MessageCard/> */}
       </body>
     </html>
   )
