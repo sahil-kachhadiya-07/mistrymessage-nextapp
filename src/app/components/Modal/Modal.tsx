@@ -28,7 +28,7 @@ const Modal: React.FC<Props> = ({ children, showCrossIcon = true, title, handelD
                 onClick={() => handelDrawerClose()}
             />
             <div
-                className={`h-min-[200px] w-full max-w-[500px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 right-0 z-20  max-h-screen overflow-y-auto rounded-2xl bg-white shadow-md py-6 px-8`}
+                className={`h-min-[200px] w-full max-w-[500px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 right-0 z-20  max-h-screen overflow-y-auto rounded-2xl bg-sky-50 shadow-md py-6 px-8`}
             >
                 {(!!title || !!showCrossIcon) && (
                     <div className="flex items-center justify-between">

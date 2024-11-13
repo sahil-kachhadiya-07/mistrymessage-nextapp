@@ -1,9 +1,5 @@
 .primary {
-    @apply bg-pink-400 text-white
-}
-
-.secondary {
-    @apply bg-white text-pink-400 border-solid border-[1px] border-pink-400
+    @apply bg-pink-400 text-white active:bg-pink-300 active:shadow-lg 
 }
 
 .text {

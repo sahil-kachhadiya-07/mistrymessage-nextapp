@@ -15,7 +15,7 @@ const Loader: React.FC<Props> = ({ showFullPage = true }) => {
       paddingBottom: '50vh',
       top: 0
     }}
-      className="fullPageWrapper"
+      className={`${showFullPage && "fullPageWrapper"}`}
     >
       <div className="loader"></div>
     </div>

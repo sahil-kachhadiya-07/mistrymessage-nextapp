@@ -31,7 +31,7 @@ const PublicUrl = () => {
         Public Profile Url
        </h1>
        <textarea placeholder='Drop your message...' rows={3} onChange={(e:any)=>setText(e.target.value)} className='border border-solid shadow-sm p-1 w-full rounded'/>
-       <Button onClick={handleTextArea} className='!w-[100px]'>Send it...</Button>
+       <Button onClick={handleTextArea}  className='!w-[100px]'>Send it...</Button>
     </Container>
   )
 }
