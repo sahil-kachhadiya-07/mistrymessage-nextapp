@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { Input } from '../Input'
 import { useFormContext } from 'react-hook-form'
 import { InputProps } from '../Input/Input'
@@ -13,7 +13,7 @@ interface FieldInputProps  extends Omit<InputProps, "register">  {
   label?: string
   name: string
   type?: string
-  onChange?:(e:any)=>void
+  onChange?:(e:ChangeEvent<HTMLInputElement>)=>void
 }
 
 
@@ -25,7 +25,7 @@ const FieldInput: React.FC<FieldInputProps> = ({
   type = 'text',
   ...props
 }) => {
-  const { formState , register } = useFormContext() || { formState: { errors: {} } };
+  const { formState} = useFormContext() || { formState: { errors: {} } };
   const { errors } = formState;
   return (
     <>

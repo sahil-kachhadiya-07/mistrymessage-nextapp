@@ -1,8 +1,8 @@
 'use client'
 import { Button } from '@/app/components/Button'
 import { Container } from '@/app/components/Container'
-import { FieldInput } from '@/app/components/FieldInput'
 import { Input } from '@/app/components/Input'
+import { Loader } from '@/app/components/Loader'
 import { MessageCard } from '@/app/components/MessageCard'
 import { Switch } from '@/app/components/Switch'
 import { Message } from '@/model/User'
@@ -29,7 +29,7 @@ const DashBoard = () => {
   const methods = useForm({
     resolver: zodResolver(acceptMessageSchema)
   })
-  const { register, watch, setValue } = methods
+  const { watch, setValue } = methods
 
   const acceptMessages = watch('acceptMessages')
   console.log('acceptMessages', acceptMessages)
@@ -90,7 +90,7 @@ const DashBoard = () => {
   }
 
   const user = session?.user as User
-  const baseUrl = `${window.location.protocol}//${window.location.host}`
+  const baseUrl =  (typeof window !== 'undefined') && `${window.location.protocol}//${window.location.host}`
   const ProfileUrl = `${baseUrl}/u/${user?.username}`
 
   const handleCopyClipBoard = () => {
@@ -99,6 +99,10 @@ const DashBoard = () => {
   }
   if(!session || !session.user){
     return <div>Please Login</div>
+  }
+  if(isLoading || isSwitchLoading)
+  {
+    return <Loader/>
   }
   return (
     <Container>
@@ -137,5 +141,4 @@ const DashBoard = () => {
     </Container>
   )
 }
-
 export default DashBoard

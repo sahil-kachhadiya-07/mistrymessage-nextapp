@@ -1,8 +1,5 @@
 'use client'
-import React, { Children, ReactNode } from 'react'
-import { FieldInput } from '../FieldInput'
-import { Button } from '../Button'
-import { FormProvider, UseFormReturn } from 'react-hook-form'
+import React, {  ReactNode } from 'react'
 import Image from 'next/image'
 import { AuthImage, Icon } from '../../../../public/assets'
 

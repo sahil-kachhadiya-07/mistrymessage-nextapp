@@ -1,7 +1,6 @@
 'use client'
 import { Button } from '@/app/components/Button'
 import { Container } from '@/app/components/Container'
-import { Input } from '@/app/components/Input'
 import { User } from '@/model/User'
 import { ApiResponse } from '@/types/ApiResponseType'
 import axios, { AxiosError } from 'axios'
@@ -9,7 +8,7 @@ import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 
-const page = () => {
+const PublicUrl = () => {
   const {data:session} = useSession()
   const user = session?.user as User
   const [text , setText] = useState() 
@@ -37,4 +36,4 @@ const page = () => {
   )
 }
 
-export default page
+export default PublicUrl

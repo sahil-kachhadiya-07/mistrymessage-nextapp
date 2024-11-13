@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation'
 import axios, { AxiosError } from 'axios'
 
 import React, {
-  HtmlHTMLAttributes,
   useCallback,
   useEffect,
   useState
@@ -20,9 +19,8 @@ import { Button } from '@/app/components/Button'
 import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { AuthDesign } from '@/app/components/AuthDesign'
-import { ButtonVariant } from '@/app/components/Button/Button'
 
-const page = () => {
+const SignUp = () => {
   const [username, setUsername] = useState('')
   const [usernameMessages, setUsernameMessages] = useState('')
   const [isCheckingUsername, setIsCheckingUsername] = useState(false)
@@ -56,6 +54,7 @@ const page = () => {
         )
       } finally {
         setIsCheckingUsername(false)
+        toast(usernameMessages)
       }
     }
   }
@@ -126,4 +125,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SignUp

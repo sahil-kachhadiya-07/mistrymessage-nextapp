@@ -30,7 +30,6 @@ const Input: React.FC<InputProps> = ({
   if (!formContext) {
     return <input className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`} {...props} />; 
   }
-  const { register } = useFormContext()
   return (
     <>
       <div
@@ -48,7 +47,7 @@ const Input: React.FC<InputProps> = ({
           className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`}
           type={type}
           {...props}
-          {...register(name , {onChange:onChange})}
+          {...formContext.register(name , {onChange:onChange})}
         />
       </div>
     </>

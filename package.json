@@ -17,6 +17,7 @@
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "classnames": "^2.5.1",
     "lodash": "^4.17.21",
     "lucide-react": "^0.454.0",
     "mongoose": "^8.6.3",

@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30
 
-export async function POST (req: Request) {
+export async function POST () {
   try {
     const prompt = `
     Write a short story about a futuristic city where humans and AI live together harmoniously. 
@@ -14,7 +14,7 @@ export async function POST (req: Request) {
     `
 
     // Ask OpenAI for a streaming chat completion given the prompt
-          //@ts-ignore
+    //@ts-expect-error cannot find the openai
     const response = await openai.completions.create({
       model: 'gpt-3.5-turbo-instruct',
       max_tokens: 400,

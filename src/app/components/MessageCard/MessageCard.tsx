@@ -1,6 +1,6 @@
 'use client'
 
-import { CrossIcon } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
 import React, { useState } from 'react'
 import { Button } from '../Button'
 import { Modal } from '../Modal'
@@ -27,6 +27,8 @@ import { Message } from '@/model/User'
       setOpen(false)
      }
   }
+  const date = new Date(message.createdAt)
+  const formattedDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
   return (
     <div className='shadow-lg flex  flex-col max-w-[600px] w-full p-4'>
           <Modal forceHidden={open} handelDrawerClose={()=>setOpen(false)}>
@@ -41,10 +43,10 @@ import { Message } from '@/model/User'
        <h1 className='font-bold text-[24px]'>
             {message.content}
         </h1>
-        <Button onClick={()=>setOpen(true)}><CrossIcon/></Button>
+        <span onClick={()=>setOpen(true)} className='text-red-100 cursor-pointer'><Trash2 /></span>
        </div>
         <div>
-           {message.createdAt}
+           {formattedDate}
         </div>
     </div>
   )

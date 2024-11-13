@@ -2,7 +2,7 @@ import sendVerificationEmail from '@/helpers/sendVerificationEmail'
 import dbConnect from '@/lib/dbConnect'
 import UserModel from '@/model/User'
 import { NextResponse } from 'next/server'
-var bcrypt = require('bcryptjs')
+import bcrypt from 'bcryptjs';
 
 export const POST = async (request: Request) => {
   await dbConnect()
