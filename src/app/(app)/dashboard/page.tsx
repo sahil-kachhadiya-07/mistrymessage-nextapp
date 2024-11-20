@@ -104,6 +104,11 @@ const DashBoard = () => {
   {
     return <Loader/>
   }
+
+  const stickyNoteColors = [
+  "#FFEB3B", "#FFCDD2", "#C5E1A5", "#BBDEFB", "#FFF9C4",
+  "#FFAB91", "#D1C4E9", "#F8BBD0", "#AED581", "#80DEEA",
+];
   return (
     <Container>
       <h1 className='text-[40px] font-bold '>User Dashboard</h1>
@@ -112,6 +117,7 @@ const DashBoard = () => {
         <Input
           name='link'
           value={ProfileUrl}
+          classNames = {{inputClassName : "bg-white pl-4"}}
           disabled
         />
         <Button className='text-nowrap' onClick={handleCopyClipBoard}>
@@ -128,14 +134,25 @@ const DashBoard = () => {
       />
      <div className="grid grid-cols-2 gap-6" >
      {
-        messages.length > 0 ? (
-          messages.map((message, index)=>{
-            return <div key={index} >
-              <MessageCard message={message} onMessageDelete={handleDeleteMessage} />
-            </div>
-          })
-        ) : <div className='flex items-center justify-center text-gray-400 text-6'>No message to display</div>
-      }
+       messages.length > 0 ? (
+         messages.map((message, index) => {
+      const randomColor = stickyNoteColors[Math.floor(Math.random() * stickyNoteColors.length)];
+      // Select a random color from the array for each message
+
+      return (
+        <div key={index}>
+          <MessageCard 
+            message={message} 
+            onMessageDelete={handleDeleteMessage} 
+            styles={{container : { backgroundColor: randomColor }}}
+          />
+        </div>
+      );
+    })
+  ) : (
+    <div className='flex items-center justify-center text-gray-400 text-6'>No message to display</div>
+  )
+}
      </div>
      
     </Container>

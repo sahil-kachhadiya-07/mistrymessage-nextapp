@@ -22,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   leftAdornment,
   rightAdornment,
+  disabled = false,
   ...props
 }) => {
   const renderButtonVariant = () => {
@@ -40,7 +41,9 @@ const Button: React.FC<ButtonProps> = ({
         <span className={`{iconClassName}`}>{leftAdornment}</span>
       )}
       <button
-        className={`flex items-center justify-center py-2 px-4 rounded ${className} ${renderButtonVariant()}`}
+        className={`flex items-center justify-center py-2 px-4 rounded ${
+          disabled ? 'bg-pink-300 cursor-not-allow' : renderButtonVariant()
+        } ${className}`}
         {...props}
       >
         {children}

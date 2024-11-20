@@ -11,8 +11,10 @@ import { Message } from '@/model/User'
   interface MessageCardProps {
     message:Message;
     onMessageDelete:(messageId:any)=>void
+    className?:string
+    styles?:{container:{backgroundColor:string}}
   }
-  const MessageCard:React.FC<MessageCardProps> = ({message,onMessageDelete}) => {
+  const MessageCard:React.FC<MessageCardProps> = ({message,onMessageDelete,className,styles}) => {
     const [open , setOpen] = useState(false)
   const handleDelete = async () =>{
      try {
@@ -30,7 +32,7 @@ import { Message } from '@/model/User'
   const date = new Date(message.createdAt)
   const formattedDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
   return (
-    <div className='shadow-lg flex  flex-col max-w-[600px] w-full p-4'>
+    <div className={`shadow-lg flex  flex-col max-w-[600px] w-full p-4 bg-white ${className}`} style={{...styles.container}}>
           <Modal forceHidden={open} handelDrawerClose={()=>setOpen(false)}>
             <h1 className='text-[24px] font-bold'>Delete Message</h1>
             <p className='text-[16px] py-4'>Are you sure to delete message?</p>
