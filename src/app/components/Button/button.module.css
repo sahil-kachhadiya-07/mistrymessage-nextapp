@@ -3,7 +3,7 @@
 }
 
 .secondary{
-    @apply !bg-white text-pink-400 active:!bg-pink-400 active:text-white border-solid border-[1px] border-pink-400
+    @apply !bg-white !text-pink-400 active:!bg-pink-400 active:!text-white border-solid border-[1px] !border-pink-400
 }
 
 .text {
