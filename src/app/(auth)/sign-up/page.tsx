@@ -102,7 +102,7 @@ const SignUp = () => {
             {isCheckingUsername && <Loader2 className='animate-spin' />}
             <FieldInput name='email' label='Email' placeholder='Enter your email'/>
             <FieldInput name='password' label='Password' type='password' placeholder='Enter your password'/>
-            <Button className='w-full !bg-pink-400' type='submit'>
+            <Button className='w-full !bg-blue-1' type='submit'>
               {isSubmitting ? (
                 <>
                   <Loader2 className='animate-spin' /> please wait..
@@ -114,7 +114,7 @@ const SignUp = () => {
             <div className='flex items-center flex-row'>
               <p>Already a Member?</p>
               <Link href='/sign-in'>
-                <Button variant="text" className='underline !text-pink-400'>
+                <Button variant="text" className='underline !text-blue-1'>
                   Sign In
                 </Button>{' '}
               </Link>
