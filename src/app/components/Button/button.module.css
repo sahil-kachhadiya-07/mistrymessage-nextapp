@@ -2,6 +2,10 @@
     @apply bg-pink-400 text-white active:bg-pink-300 active:shadow-lg 
 }
 
+.secondary{
+    @apply !bg-white text-pink-400 active:!bg-pink-400 active:text-white border-solid border-[1px] border-pink-400
+}
+
 .text {
     @apply  border-none bg-transparent text-pink-400
 }

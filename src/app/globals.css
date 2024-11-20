@@ -25,3 +25,8 @@ body {
     text-wrap: balance;
   }
 } */
+
+::placeholder {
+  font-size:14px;
+  color: #d3d3d3;;
+}

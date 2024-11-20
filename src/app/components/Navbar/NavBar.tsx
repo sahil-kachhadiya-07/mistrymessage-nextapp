@@ -20,18 +20,25 @@ const NavBar = () => {
             <div>
             {
                 session ? (
-                   <>
+                   <div className='flex justify-between gap-2 items-center'>
                     <span>
                       Welcome , {user?.username || user?.email}
                     </span>
                     <Button onClick={()=>signOut()} >Sign Out</Button>
-                   </>
+                   </div>
                 ) : (
-                  <Link href="/sign-in">
+                  <div className='flex justify-between gap-2'>
+                    <Link href="/sign-in">
                     <Button className='!bg-pink-400'>
-                      Login
+                      Sign In
                     </Button>
                   </Link>
+                   <Link href="/sign-up">
+                   <Button className='!bg-pink-400' variant='secondary'>
+                     Sign Up
+                   </Button>
+                 </Link>
+                  </div>
                 )
             }
             </div>
