@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react'
+import { Eye, EyeClosed, EyeOff } from 'lucide-react'
+import React, { ReactNode, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
-export interface InputProps extends React.ComponentProps<"input"> {
+export interface InputProps extends React.ComponentProps<'input'> {
   name: string
   defaultValue?: string
   label?: ReactNode
@@ -12,7 +13,7 @@ export interface InputProps extends React.ComponentProps<"input"> {
   }
   required?: boolean
   type?: string
-  onChange?:(e?:React.ChangeEvent<HTMLInputElement>)=>void
+  onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const Input: React.FC<InputProps> = ({
@@ -25,10 +26,16 @@ const Input: React.FC<InputProps> = ({
   type,
   ...props
 }) => {
-  const formContext = useFormContext();
-  
+  const [visible, setVisible] = useState(false)
+  const formContext = useFormContext()
+
   if (!formContext) {
-    return <input className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`} {...props} />; 
+    return (
+      <input
+        className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`}
+        {...props}
+      />
+    )
   }
   return (
     <>
@@ -42,13 +49,38 @@ const Input: React.FC<InputProps> = ({
             {label} <span className='required'>{required ? ' *' : ''}</span>
           </label>
         )}
-        <input
-          defaultValue={defaultValue}
-          className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`}
-          type={type}
-          {...props}
-          {...formContext.register(name , {onChange:onChange})}
-        />
+        {type === 'password' ? (
+          <div className='relative'>
+            <input
+              defaultValue={defaultValue}
+              className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`}
+              type={`${visible === true ? 'text' : 'password'}`}
+              {...props}
+              {...formContext.register(name, { onChange: onChange })}
+            />
+            {visible === true ? (
+              <Eye
+                className='absolute right-[5px] cursor-pointer top-[6px] text-gray-400'
+                size={20}
+                onClick={() => setVisible(prev => !prev)}
+              />
+            ) : (
+              <EyeClosed
+                className='absolute right-[5px] cursor-pointer top-[6px] text-gray-400'
+                size={20}
+                onClick={() => setVisible(prev => !prev)}
+              />
+            )}
+          </div>
+        ) : (
+          <input
+            defaultValue={defaultValue}
+            className={`border border-solid shadow-sm p-1 w-full rounded ${classNames?.inputClassName}`}
+            type={type}
+            {...props}
+            {...formContext.register(name, { onChange: onChange })}
+          />
+        )}
       </div>
     </>
   )

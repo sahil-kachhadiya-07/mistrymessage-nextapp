@@ -95,12 +95,13 @@ const SignUp = () => {
           >
             <FieldInput
               name='username'
-              label='username'
+              label='Username'
+              placeholder='Enter your username'
               onChange={handleOnChange}
             />
             {isCheckingUsername && <Loader2 className='animate-spin' />}
-            <FieldInput name='email' label='email' />
-            <FieldInput name='password' label='password' />
+            <FieldInput name='email' label='Email' placeholder='Enter your email'/>
+            <FieldInput name='password' label='Password' type='password' placeholder='Enter your password'/>
             <Button className='w-full !bg-pink-400' type='submit'>
               {isSubmitting ? (
                 <>

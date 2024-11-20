@@ -11,7 +11,7 @@ export async function DELETE (
   const messageId = params.messageId
   await dbConnect()
   const session = await getServerSession(authOptions)
-
+ console.log('session', session)
   const user: User = session?.user as User
 
   if (!session || !session.user) {

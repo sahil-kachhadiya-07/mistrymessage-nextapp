@@ -59,8 +59,8 @@ const SignIn = () => {
           onSubmit={methods.handleSubmit(onSubmit)}
           className='flex w-full px-[32px] flex-col gap-6'
         >
-          <FieldInput label='Username/Email' name='identifier' />
-          <FieldInput label='Password' name='password' />
+          <FieldInput label='Username/Email' name='identifier' placeholder='Enter your username or email'/>
+          <FieldInput label='Password' name='password' type='password' placeholder='Enter your password'/>
           <Button className='w-full !bg-pink-400' type='submit'>
             Sign In
           </Button>
