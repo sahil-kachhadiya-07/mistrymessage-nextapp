@@ -25,7 +25,7 @@ const Switch: React.FC<ToggleProps> = (props) => {
                     }}
                     
                 />
-                <div className="relative w-11 h-6 bg-gray-500 peer-focus:outline-none  rounded-full peer dark:bg-white-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:!bg-pink-400 p-1" />
+                <div className="relative w-11 h-6 bg-gray-500 peer-focus:outline-none  rounded-full peer dark:bg-white-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:!bg-blue-1 p-1" />
                 {label && <span className="ms-3 text-sm font-medium">{label}</span>}
             </label>
         </>

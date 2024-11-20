@@ -51,7 +51,7 @@ const VerificationCode = () => {
             className='flex w-full px-[32px] flex-col gap-6'
           >
             <FieldInput name='code' label='Verification Code' />
-            <Button type='submit' className='w-full !bg-pink-400'>
+            <Button type='submit' className='w-full !bg-blue-1'>
               Sign-In
             </Button>
           </form>

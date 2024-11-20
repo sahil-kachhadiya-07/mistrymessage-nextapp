@@ -16,7 +16,9 @@ const NavBar = () => {
     
     <nav className='bg-white min-h-[80px] w-full !shadow-lg z-30 flex justify-between items-center px-6'>
             {/* <div  className='font-black h-full text-[40px] text-white'>mystery message</div> */}
+            <Link href={"/"}>
             <Image src={Icon} alt='icon' width={40} height={40}/>
+            </Link>
             <div>
             {
                 session ? (
@@ -29,7 +31,7 @@ const NavBar = () => {
                 ) : (
                   <div className='flex justify-between gap-2'>
                     <Link href="/sign-in">
-                    <Button className='!bg-pink-400'>
+                    <Button className='!bg-blue-1'>
                       Sign In
                     </Button>
                   </Link>

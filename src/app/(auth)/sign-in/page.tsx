@@ -61,7 +61,7 @@ const SignIn = () => {
         >
           <FieldInput label='Username/Email' name='identifier' placeholder='Enter your username or email'/>
           <FieldInput label='Password' name='password' type='password' placeholder='Enter your password'/>
-          <Button className='w-full !bg-pink-400' type='submit'>
+          <Button className='w-full !bg-blue-1' type='submit'>
             Sign In
           </Button>
         </form>

@@ -22,7 +22,7 @@ const PURPLE_COLORS = {
 };
 
 const BLUE_COLORS = {
-    blue: "#5872FF",
+    "blue-1": "#5872FF",
     "blue-100": "#F2F4FF",
     "blue-200": "#5F8CFF",
     "blue-300": "#356EFF",
