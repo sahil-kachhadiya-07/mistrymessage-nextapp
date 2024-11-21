@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
       case ButtonVariant.TEXT:
         return classes.text
       default:
-        return classes.primary
+        return classes.PRIMARY
     }
   }
   return (
