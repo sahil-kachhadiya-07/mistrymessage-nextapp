@@ -37,8 +37,8 @@ import { Message } from '@/model/User'
             <h1 className='text-[24px] font-bold'>Delete Message</h1>
             <p className='text-[16px] py-4'>Are you sure to delete message?</p>
           <footer className='flex justify-end gap-4 '>
-            <Button onClick={handleDelete}>delete</Button>
-            <Button onClick={()=>setOpen(false)}>cancel</Button>
+            <Button onClick={handleDelete}>Delete</Button>
+            <Button onClick={()=>setOpen(false)} variant='secondary'>Cancel</Button>
           </footer>
         </Modal>
        <div className='flex justify-between'>

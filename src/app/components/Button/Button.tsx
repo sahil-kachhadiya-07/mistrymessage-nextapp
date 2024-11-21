@@ -42,7 +42,7 @@ const Button: React.FC<ButtonProps> = ({
       )}
       <button
         className={`flex items-center justify-center py-2 px-4 rounded ${
-          disabled ? 'bg-blue-300cursor-not-allow' : renderButtonVariant()
+          disabled ? 'bg-blue-300 cursor-not-allow' : renderButtonVariant()
         } ${className}`}
         {...props}
       >

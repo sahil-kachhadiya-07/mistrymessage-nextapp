@@ -14,7 +14,9 @@ import { Loader } from '@/app/components/Loader'
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
-
+  if (status === 'authenticated') {
+    router.push('/dashboard');
+  }
   const methods = useForm({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -43,7 +45,7 @@ const SignIn = () => {
       setIsSubmitting(false)
     }
     if (result?.url) {
-      router.replace('/dashboard')
+      router.push('/dashboard')
     }
   }
 
